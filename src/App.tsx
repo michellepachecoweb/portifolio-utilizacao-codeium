@@ -30,14 +30,19 @@ function App() {
       target.todo.value = ''
     }
 
+  const toggleCompleted = (id: number) => {
+    setTodoList(todoList.map((todo) => todo.id === id ? {...todo, completed: !todo.completed} : todo))
+  }
+  
+  const deleteItem = (id: number) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id))
+  } 
+
   return (
     <>
         <div className='App'>
           <h1>Todo List</h1>
-            {/* 
-                implement an input field to add new tasks
-                implement a button to add the new task
-            */}
+
               <div>
                 <form onSubmit={addTodo} > 
                   <input type="text" name='todo'/>
@@ -45,11 +50,15 @@ function App() {
                 </form>
               </div>
 
-
-
-
               {todoList.map((todo) => (
-                <div key={todo.id}> {todo.name} </div>
+                <div key={todo.id}> 
+                {/* this checkbox should triggerr the item update on the property completed */}
+
+                    <input type='checkbox' checked={todo.completed} onChange={() => {toggleCompleted(todo.id)}}/>
+                    {todo.name} 
+                    {/* create a button to delete the current item */}
+                    <button onClick={()=>{deleteItem(todo.id)}}>Delete</button>
+                </div>
               ))}
         </div>
      
