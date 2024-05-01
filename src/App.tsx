@@ -15,6 +15,13 @@ function App() {
   const [todoList, setTodoList] = useState<Todo[]>([])
 
 // this function adds the event target to the todoList array
+
+/**
+ * Adds a new todo item to the todoList state.
+ *
+ * @param {React.FormEvent} event - The form event triggered by submitting the todo input.
+ * @return {void} This function does not return anything.
+ */
   const addTodo = (event: React.FormEvent) => {
       event.preventDefault()
       const target = event.target as typeof event.target & {
@@ -30,10 +37,22 @@ function App() {
       target.todo.value = ''
     }
 
+/**
+ * Toggles the completion status of a todo item with the given ID.
+ *
+ * @param {number} id - The ID of the todo item to toggle.
+ * @return {void} This function does not return anything.
+ */
   const toggleCompleted = (id: number) => {
     setTodoList(todoList.map((todo) => todo.id === id ? {...todo, completed: !todo.completed} : todo))
   }
   
+  /**
+   * Deletes an item from the todo list based on its ID.
+   *
+   * @param {number} id - The ID of the item to be deleted.
+   * @return {void} This function does not return anything.
+   */
   const deleteItem = (id: number) => {
     setTodoList(todoList.filter((todo) => todo.id !== id))
   } 
