@@ -51,11 +51,11 @@ function App() {
               </div>
 
               {todoList.map((todo) => (
-                <div key={todo.id}> 
+                <div key={todo.id} className='item'> 
                 {/* this checkbox should triggerr the item update on the property completed */}
 
                     <input type='checkbox' checked={todo.completed} onChange={() => {toggleCompleted(todo.id)}}/>
-                    {todo.name} 
+                    <span className={todo.completed ? 'completed' : ''} >{todo.name}</span>
                     {/* create a button to delete the current item */}
                     <button onClick={()=>{deleteItem(todo.id)}}>Delete</button>
                 </div>
